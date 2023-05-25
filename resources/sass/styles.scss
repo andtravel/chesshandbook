@@ -1,0 +1,76 @@
+.brown {
+    color: #ffffdb;
+    background: #832D16;
+}
+
+.bg_screen {
+    background: url("http://chesshandbook/img/papirus-fon-26-4.jpg") repeat;
+}
+
+.header-responsive {
+    width: 100%;
+    height: auto;
+    margin-top: 13px;
+}
+
+.card-style {
+    background: url("http://chesshandbook/img/krasivo-40.jpg") repeat;
+}
+
+@font-face {
+    font-family: 'ISChess';
+  /*  src: url('http://chesshandbook/fonts/IS-TT-01.eot');
+    src: local('☺︎'),
+    url("http://chesshandbook/fonts/IS-TT-01.woff") format("woff");*/
+    /*url("http://chesshandbook/fonts/IS-TT-01.otf") format("opentype");*/
+url("http://chesshandbook/fonts/IS-TT-01.svg#ISChess") format("svg");
+url("http://chesshandbook/fonts/IS-TT-01.ttf");
+}
+
+@font-face {
+    font-family: 'diagramttfritz';
+url('http://chesshandbook/fonts/diagramttfritz.ttf')
+}
+
+.f1 {
+    font-family: 'diagramttfritz', sans-serif;
+    font-size: 22px;
+}
+
+
+.f2 {
+    font-family: 'ISChess', sans-serif;
+    font-size: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+html,
+body {
+    height: 100%;
+    background: url("http://chesshandbook/img/wenge-wood-texture.jpg");
+}
+.opentab {
+    margin: auto;
+    padding: 0;
+    height: auto;
+    width: 60%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex: 0 0 auto;
+}
