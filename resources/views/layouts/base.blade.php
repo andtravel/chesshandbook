@@ -6,8 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    {{--    @vite(['resources/scss/app.scss', 'resources/js/app.js'])--}}
     <link rel="stylesheet" type="text/css" href="https://pgn.chessbase.com/CBReplay.css">
+    <link rel="stylesheet" href="{{asset('/assets/admin/fonts/all.min.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('/assets/css/styles.css')}}">
@@ -19,20 +19,20 @@
             <div class="container-fluid">
                 <a class="navbar-brand ms-4" href="{{ route('index') }}"><h1 class="text-custom-light">Шахматный справочник</h1></a>
                 <div class="navbar ms-3">
-                    <form class="d-flex"  role="search">
-                        <input class="form-control" type="search" placeholder="Поиск на сайте"
+                    {{--<form class="d-flex"  role="search">
+                        <input class="form-control color-custom-light" type="search" placeholder="Поиск на сайте"
                                aria-label="Search">
                         <button class="btn btn-outline-light brown" type="submit">Искать</button>
-                    </form>
+                    </form>--}}
                         @guest
                             @if (Route::has('login'))
-                                <div class="navbar-nav ms-3">
-                                    <a class="btn btn-outline-light text-custom-light" aria-current="page"
+                                <div class="navbar-nav">
+                                    <a class="btn btn-outline-light dark-brown" aria-current="page"
                                        href="{{ route ('login') }}">Личный кабинет</a>
                                 </div>
                             @endif
                             @if (Route::has('register'))
-                                <div class="navbar-nav ms-2">
+                                <div class="navbar-nav ms-5">
                                     <a class="nav-link text-custom-light" aria-current="page"
                                        href="{{ route('register') }}">Регистрация</a>
                                 </div>
@@ -40,11 +40,11 @@
 
                         @else
                             <div class="navbar-nav">
-                                <a class="nav-link active text-custom-light" aria-current="page" href="#">
+                                <a class="nav-link text-custom-light" aria-current="page" href="#">
                                     {{ Auth::user()->name }}
                                 </a>
                             </div>
-                            <div class="navbar-nav ms-3">
+                            <div class="navbar-nav ms-5">
                                 <a
                                     class="btn btn-outline-light"
                                     aria-current="page"
@@ -65,7 +65,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="offcanvas offcanvas-start brown" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas offcanvas-start brown " tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Шахматный справочник</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>

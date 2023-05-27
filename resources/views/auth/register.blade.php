@@ -1,137 +1,127 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Регистрация</title>
+@extends('layouts.base')
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/fonts/all.min.css')}}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css')}}">
-</head>
-<body class="hold-transition register-page bg_screen">
-<div class="register-box">
-    <div class="register-logo">
-        <h1>Регистрация</h1>
+@section('title', 'Регистрация')
+
+@section('main')
+    <div class="row justify-content-center mt-auto">
+        <div class="col-md-4">
+            <div class="card brown">
+                <div class="card-header text-center"><h2>{{ __('Регистрация') }}</h2></div>
+                <div class="card-body">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="list-unstyled">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('register') }}" method="post">
+                        @csrf
+
+                        <div class="input-group mb-3">
+                            <input
+                                id="name"
+                                type="text"
+                                class="form-control @error('name') is-invalid @enderror"
+                                name="name"
+                                placeholder="Имя"
+                                value="{{ old('name') }}"
+                                required autocomplete="name"
+                                autofocus>
+                                <div class="input-group-text card-style border-0">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input
+                                id="email"
+                                type="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                name="email"
+                                placeholder="Email"
+                                value="{{ old('email') }}"
+                                required autocomplete="email">
+                                <div class="input-group-text card-style border-0">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input
+                                id="password"
+                                type="password"
+                                class="form-control @error('password') is-invalid @enderror"
+                                name="password"
+                                required autocomplete="new-password"
+                                placeholder="Пароль">
+                                <div class="input-group-text card-style border-0">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input
+                                id="password-confirm"
+                                type="password"
+                                class="form-control"
+                                name="password_confirmation"
+                                required autocomplete="new-password"
+                                placeholder="Повторите пароль">
+                                <div class="input-group-text card-style border-0">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="form-check">
+                                <input class="form-check-input color-custom-light" type="checkbox" name="remember"
+                                       id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Запомнить меня') }}
+                                </label>
+                            </div>
+                            <div class="row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-outline-light brown">
+                                        {{ __('Вперед') }}
+                                    </button>
+                                </div>
+                            </div>
+{{--                            <div class="col-5">--}}
+{{--                                <button type="submit" class="btn btn-block brown">Вперед</button>--}}
+{{--                            </div>--}}
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
     </div>
-
-    <div class="card">
-        <div class="card-body register-card-body">
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="list-unstyled">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
-            <form action="{{ route('register') }}" method="post">
-                @csrf
-
-                <div class="input-group mb-3">
-                    <input
-                        id="name"
-                        type="text"
-                        class="form-control @error('name') is-invalid @enderror"
-                        name="name"
-                        placeholder="Имя"
-                        value="{{ old('name') }}"
-                        required autocomplete="name"
-                        autofocus>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
-                    @error('name')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
-                </div>
-
-                <div class="input-group mb-3">
-                    <input
-                        id="email"
-                        type="email"
-                        class="form-control @error('email') is-invalid @enderror"
-                        name="email"
-                        placeholder="Email"
-                        value="{{ old('email') }}"
-                        required autocomplete="email">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
-                </div>
-
-                <div class="input-group mb-3">
-                    <input
-                        id="password"
-                        type="password"
-                        class="form-control @error('password') is-invalid @enderror"
-                        name="password"
-                        required autocomplete="new-password"
-                        placeholder="Пароль">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
-                </div>
-
-                <div class="input-group mb-3">
-                    <input
-                        id="password-confirm"
-                        type="password"
-                        class="form-control"
-                        name="password_confirmation"
-                        required autocomplete="new-password"
-                        placeholder="Повторите пароль">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-around align-items-center">
-                    <div>
-                        <a href="{{route('login')}}" class="text-center">Я уже зарегистрирован</a>
-                    </div>
-                    <div class="col-5">
-                        <button type="submit" class="btn btn-block brown">Вперед</button>
-                    </div>
-                </div>
-                <div class="text-center mt-2"><a href="{{route('index')}}">Вернуться на главную страницу</a></div>
-            </form>
-
-
-        </div>
-        <!-- /.form-box -->
-    </div><!-- /.card -->
-</div>
+@endsection
 <!-- /.register-box -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer">
@@ -141,8 +131,7 @@
 <!-- AdminLTE App -->
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 </body>
-</html>
-
+</html>--}}
 
 
 {{--

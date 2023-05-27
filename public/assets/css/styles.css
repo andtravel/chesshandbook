@@ -12,11 +12,22 @@
 }
 
 .dark-brown {
+    color: #ffffdb;
     background: #400000;
+}
+
+.input-group>input {
+    background: #ffffdb;
+    border: none;
+}
+
+.dropdown-item {
+    color: #ffffdb;
 }
 
 .bg_screen {
     background: url("../img/papirus-fon-26-4.jpg") repeat;
+    /*background: #f8e5c3;*/
 }
 
 .header-responsive {
@@ -26,7 +37,7 @@
 }
 
 .card-style {
-    /*background: url("../img/krasivo-40.jpg") repeat;*/
+    /*background: url("../img/papirus-fon-26.jpg") repeat;*/
     background: #e9b975;
 }
 
@@ -65,7 +76,9 @@ url('http://chesshandbook/fonts/diagramttfritz.ttf')
 html,
 body {
     height: 100%;
-    background: url("../img/wenge-wood-texture.jpg");
+    background: url("../img/papirus-fon-26-7.jpg");
+    /*background: url("../img/wenge-wood-texture.jpg");*/
+    color: #400000;
 }
 .opentab {
     margin: auto;
@@ -87,3 +100,36 @@ main {
 footer {
     flex: 0 0 auto;
 }
+
+.btn-light {
+    --bs-btn-color:#000;
+    --bs-btn-bg:#ffffdb;
+    --bs-btn-border-color:#ffffdb;
+    --bs-btn-hover-color:#000;
+    --bs-btn-hover-bg:#d3d4d5;
+    --bs-btn-hover-border-color:#c6c7c8;
+    --bs-btn-focus-shadow-rgb:211,212,213;
+    --bs-btn-active-color:#000;
+    --bs-btn-active-bg:#c6c7c8;
+    --bs-btn-active-border-color:#babbbc;
+    --bs-btn-active-shadow:inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color:#000;
+    --bs-btn-disabled-bg:#ffffdb;
+    --bs-btn-disabled-border-color:#ffffdb;
+}
+
+.btn-outline-light {
+    --bs-btn-color:#ffffdb;
+    --bs-btn-border-color:#ffffdb;
+    --bs-btn-hover-color:#400000;
+    --bs-btn-hover-bg:#ffffdb;
+    --bs-btn-hover-border-color:#ffffdb;
+    --bs-btn-focus-shadow-rgb:248,249,250;
+    --bs-btn-active-color:#400000;
+    --bs-btn-active-bg:#ffffdb;
+    --bs-btn-active-border-color:#ffffdb;
+    --bs-btn-active-shadow:inset 0 3px 5px rgba(64, 0, 0, 0.125);
+    --bs-btn-disabled-color:#ffffdb;
+    --bs-btn-disabled-bg:transparent;
+    --bs-btn-disabled-border-color:#ffffdb;
+    --bs-gradient:none}
