@@ -8,47 +8,45 @@
     <title>@yield('title')</title>
     {{--    @vite(['resources/scss/app.scss', 'resources/js/app.js'])--}}
     <link rel="stylesheet" type="text/css" href="https://pgn.chessbase.com/CBReplay.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('/assets/css/styles.css')}}">
 </head>
 <body>
 <div class="container bg_screen">
     <header class="header-responsive">
-        <nav class="navbar bg-body-tertiary navbar-dark bg-gradient dark-brown">
+        <nav class="navbar bg-body-tertiary navbar-dark bg-gradient dark-brown text-custom-light">
             <div class="container-fluid">
-                <a class="navbar-brand ms-4" href="{{ route('index') }}"><h1>Шахматный справочник</h1></a>
+                <a class="navbar-brand ms-4" href="{{ route('index') }}"><h1 class="text-custom-light">Шахматный справочник</h1></a>
                 <div class="navbar ms-3">
+                    <form class="d-flex"  role="search">
+                        <input class="form-control" type="search" placeholder="Поиск на сайте"
+                               aria-label="Search">
+                        <button class="btn btn-outline-light brown" type="submit">Искать</button>
+                    </form>
                         @guest
                             @if (Route::has('login'))
-                                <div class="navbar-nav">
-                                    <a class="nav-link active" aria-current="page"
-                                       href="{{ route ('login') }}">Вход</a>
+                                <div class="navbar-nav ms-3">
+                                    <a class="btn btn-outline-light text-custom-light" aria-current="page"
+                                       href="{{ route ('login') }}">Личный кабинет</a>
                                 </div>
                             @endif
                             @if (Route::has('register'))
-                                <div class="navbar-nav ms-5">
-                                    <a class="nav-link active" aria-current="page"
+                                <div class="navbar-nav ms-2">
+                                    <a class="nav-link text-custom-light" aria-current="page"
                                        href="{{ route('register') }}">Регистрация</a>
                                 </div>
                             @endif
 
                         @else
-                            <li class="nav-item">
-                                <a
-                                    id="navbarDropdown"
-                                    class="nav-link active"
-                                    href="#" role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    v-pre>
+                            <div class="navbar-nav">
+                                <a class="nav-link active text-custom-light" aria-current="page" href="#">
                                     {{ Auth::user()->name }}
                                 </a>
-                            </li>
-                            <li class="nav-item">
+                            </div>
+                            <div class="navbar-nav ms-3">
                                 <a
-                                    class="nav-link active"
+                                    class="btn btn-outline-light"
                                     aria-current="page"
                                     href="{{route ('logout')}}"
                                     onclick="event.preventDefault();
@@ -58,124 +56,81 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                            </li>
+                            </div>
                         @endguest
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <div class="offcanvas offcanvas-start brown" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Шахматный справочник</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    СПОРТ
+                                </a>
+                                <ul class="dropdown-menu  dropdown-menu-dark dark-brown" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{route ('devpage')}}">Матчи</a></li>
+                                    <li><a class="dropdown-item" href="{{route ('devpage')}}">Турниры</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    НАУКА
+                                </a>
+                                <ul class="dropdown-menu  dropdown-menu-dark dark-brown" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{route ('devpage')}}">Психология</a></li>
+                                    <li><a class="dropdown-item" href="{{route ('notation')}}">Нотация</a></li>
+                                    <li><a class="dropdown-item" href="{{route ('rules')}}">Правила игры</a></li>
+                                    <li><a class="dropdown-item" href="#">Словарь терминов</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                   aria-expanded="false" data-bs-toggle="dropdown">
+                                    ИСКУССТВО
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark dark-brown" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{route ('history')}}">История шахмат</a></li>
+                                    <li><a class="dropdown-item" href="{{route ('devpage')}}">Композиция</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </nav>
         <img src="{{asset('/assets/img/header.jpg')}}" alt="Header" style="width: 100%">
-        <nav class="navbar  navbar-dark bg-gradient brown">
-            <div class="container-fluid">
-{{--                <a class="navbar-brand" href="{{route ('index')}}">Главная</a>--}}
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                СПОРТ
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{route ('devpage')}}">Матчи</a></li>
-                                <li><a class="dropdown-item" href="{{route ('devpage')}}">Турниры</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                НАУКА
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{route ('devpage')}}">Психология</a></li>
-                                <li><a class="dropdown-item" href="{{route ('notation')}}">Нотация</a></li>
-                                <li><a class="dropdown-item" href="{{route ('rules')}}">Правила игры</a></li>
-                                <li><a class="dropdown-item" href="#">Словарь терминов</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                ИСКУССТВО
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{route ('history')}}">История шахмат</a></li>
-                                <li><a class="dropdown-item" href="{{route ('devpage')}}">Композиция</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li>
-                            <form class="d-flex">
-                                <input class="form-control me-2" type="search" placeholder="Поиск на сайте"
-                                       aria-label="Search">
-                                <button class="btn btn-outline-light" type="submit">Искать</button>
-                            </form>
-                        </li>
-                        {{--@guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page"
-                                       href="{{ route ('login') }}">Вход</a>
-                                </li>
-                            @endif
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page"
-                                       href="{{ route('register') }}">Регистрация</a>
-                                </li>
-                            @endif
-
-                        @else
-                            <li class="nav-item">
-                                <a
-                                    id="navbarDropdown"
-                                    class="nav-link active"
-                                    href="#" role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link active"
-                                    aria-current="page"
-                                    href="{{route ('logout')}}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                    Выход
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </li>
-                        @endguest--}}
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
     </header>
     @yield('main')
-    <footer class="footer mt-auto py-3 bg-gradient brown">
+    <footer class="footer mt-auto py-3 bg-gradient dark-brown">
         <div class="container">
-            <span class="text-muted">2021 @ Chessmanual</span>
+            <span class="text-muted">{{ date('Y') }}@Шахматный справочник</span>
         </div>
     </footer>
 </div>
 <script src="https://pgn.chessbase.com/jquery-3.0.0.min.js"></script>
 <script src="https://pgn.chessbase.com/cbreplay.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
 </body>
 </html>
 
