@@ -1,4 +1,4 @@
-@extends ('layputs.base')
+@extends ('layouts.base')
 @section ('title','Эндшпиль')
 @section ('main')
         <h2><a href="">Пешечные окончания</a></h2>
