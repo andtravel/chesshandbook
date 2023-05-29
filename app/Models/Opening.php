@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Opening extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'eco',
+        'name',
+        'movetext'
+    ];
 }

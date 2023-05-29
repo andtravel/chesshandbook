@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('chess_games', function (Blueprint $table) {
-            $table->unsignedMediumInteger('id');
+            $table->id();
             $table->string('Event', 64)->nullable();
             $table->string('Site', 64)->nullable();
             $table->string('Date', 16)->nullable();
