@@ -16,7 +16,7 @@ class OpeningSeeder extends Seeder
      */
     public function run(): void
     {
-        $file = fopen(public_path('/openings/a.csv'), 'r');
+        $file = fopen(public_path('/openings-table/a.csv'), 'r');
         while (($line = fgetcsv($file)) !== FALSE) {
             $move = new Move();
             $text = $line[2];
