@@ -103,6 +103,10 @@ footer {
     flex: 0 0 auto;
 }
 
+.nav-link:hover {
+    color: #e9b975;
+}
+
 .btn-light {
     --bs-btn-color:#000;
     --bs-btn-bg:#ffffdb;

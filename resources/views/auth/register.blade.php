@@ -92,7 +92,7 @@
                                 </div>
                         </div>
 
-                        <div class="d-flex justify-content-center align-items-center">
+                        <div class="d-flex justify-content-around align-items-center">
                             <div class="form-check">
                                 <input class="form-check-input color-custom-light" type="checkbox" name="remember"
                                        id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -101,7 +101,7 @@
                                 </label>
                             </div>
                             <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-4">
                                     <button type="submit" class="btn btn-outline-light brown">
                                         {{ __('Вперед') }}
                                     </button>

@@ -25,16 +25,16 @@
                         <button class="btn btn-outline-light brown" type="submit">Искать</button>
                     </form>--}}
                         @guest
-                            @if (Route::has('login'))
+                            @if (Route::has('register'))
                                 <div class="navbar-nav">
                                     <a class="btn btn-outline-light dark-brown" aria-current="page"
-                                       href="{{ route ('login') }}">Личный кабинет</a>
+                                       href="{{ route ('register') }}">Регистрация</a>
                                 </div>
                             @endif
-                            @if (Route::has('register'))
+                            @if (Route::has('login'))
                                 <div class="navbar-nav ms-5">
                                     <a class="nav-link text-custom-light" aria-current="page"
-                                       href="{{ route('register') }}">Регистрация</a>
+                                       href="{{ route('login') }}">Личный кабинет</a>
                                 </div>
                             @endif
 
@@ -121,7 +121,9 @@
         </nav>
         <img src="{{asset('/assets/img/header.jpg')}}" alt="Header" style="width: 100%">
     </header>
-    @yield('main')
+    <main>
+        @yield('main')
+    </main>
     <footer class="footer mt-auto py-3 bg-gradient dark-brown">
         <div class="container">
             <span class="text-muted">{{ date('Y') }}@Шахматный справочник</span>
