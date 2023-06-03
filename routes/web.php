@@ -24,13 +24,12 @@ Route::get('/notation',[MainController::class,'notation'])->name('notation');
 Route::get('/italiangame',[MainController::class,'italiangame'])->name('italiangame');
 Route::get('/develop',[MainController::class,'devpage'])->name('devpage');
 
-/*Route::group(['middleware' => 'guest'], function () {
-    Route::get('/register', [UserController::class,'create'])->name('register.create');
-    Route::post('/register', [UserController::class,'store'])->name('register.store');
-    Route::get('/login',[UserController::class,'loginForm'])->name('login.create');
-    Route::post('/login',[UserController::class,'login'])->name('login');
-});*/
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+});
