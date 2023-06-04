@@ -1,0 +1,17 @@
+[Event "11th Norway Chess 2023"]
+[White "Nakamura,Hikaru"]
+[Black "Carlsen,Magnus"]
+[Site "Stavanger"]
+[Round "3.1"]
+[Annotator ""]
+[Result "1/2-1/2"]
+[Date "2023.06.01"]
+[WhiteElo "2775"]
+[BlackElo "2853"]
+[PlyCount "61"]
+[TimeControl "60"]
+
+{[%evp 26,61,23,5,19,35,37,26,18,12,16,20,106,21,21,30,23,23,23,23,23,20,22,18,28,22,21,29,11,0,0,0,14,0,0,0,22,0]}
+ 1. e4 {[%emt 0:0:3]} e5 {[%emt 0:0:15]} 2. Nf3 {[%emt 0:0:10]} Nc6 {[%emt 0:0:6]} 3. Bb5 {[%emt 0:0:12][%cal Yf1b5,Yb5a4,Ya4b3][%mdl 32]} a6 {[%emt 0:0:10]} 4. Ba4 {[%emt 0:0:5]} Nf6 {[%emt 0:0:5]} 5. O-O {[%emt 0:0:5]} Be7 {[%emt 0:0:7]} 6. Re1 {[%emt 0:0:5]} b5 {[%emt 0:0:8]}
+ 7. Bb3 {[%emt 0:0:9]} O-O {[%emt 0:0:11]} 8. c3 {[%emt 0:0:35]} d5 {[%emt 0:0:6]} 9. exd5 {[%emt 0:0:8]} Nxd5 {[%emt 0:0:3]} 10. Nxe5 {[%emt 0:0:8]} Nxe5 {[%emt 0:0:11]} 11. Rxe5 {[%emt 0:0:2]} c6 {[%emt 0:0:12]} 12. d3 {[%emt 0:0:6]} Bd6 {[%emt 0:0:5]} 13. Re1 {[%emt 0:0:4]} Bf5 {[%emt 0:0:8]} 14. Qf3 {[%emt 0:0:25]} Qh4 {[%emt 0:0:8] C89: Closed Ruy Lopez: Marshall Attack.} 15. g3 {[%emt 0:0:5]} ({But not} 15. Bxd5 Bxh2+ 16. Kf1 Bg4 $17 )Qh3 {[%emt 0:0:9]} 16. Nd2 {[%emt 0:1:48] 16.Nd2 is setting a new trend.} Rae8 {[%emt 0:0:31] White has an edge.} 17. Ne4 {[%emt 0:0:15]} Bg4 {[%emt 0:0:6]} 18. Qg2 {[%emt 0:0:3]} Qxg2+ {[%emt 0:0:10]} 19. Kxg2 {[%emt 0:0:4] With the idea Bg5.} f5 {[%emt 0:0:8]} 20. h3 {[%emt 0:0:11]} (20. Bf4 Bxf4 21. gxf4 fxe4 22. dxe4 Bf3+ 23. Kxf3 Rxf4+ 24. Kg3 Rfxe4 25. Rxe4 Rxe4 26. Rc1 Kf8 27. c4 Ne7 28. Kf3 Rh4 29. cxb5 axb5 30. Rd1 Nf5 31. Bc2 Nd4+ 32. Kg3 g5 33. Rd2 Ke7 34. f3 Nxc2 35. Rxc2 Kd6 36. Rd2+ Ke6 37. Rc2 Kd6 38. Rd2+ Ke6 39. Rc2 Kd6 {½-½ Nakamura,H (2768)-Carlsen,M (2859) Speed Chess Chess.com INT blitz 2022 (4.11)} )Bh5 {[%emt 0:0:6]} (20... fxe4 21. hxg4 exd3 22. Be3 $16 )21. Bf4 {[%emt 0:0:10]} ({Don't blunder} 21. Bxd5+ $2 cxd5 22. Bf4 Bxf4 $19 )Bxf4 {[%emt 0:0:11]} ({Don't take} 21... fxe4 22. Bxd6 Bf3+ 23. Kh2 $18 )22. gxf4 {[%emt 0:0:2] Strongly threatening Bxd5+.} fxe4 {[%emt 0:0:9]} 23. dxe4 {[%emt 0:0:3][%mdl 64] [#] Pin} Bf3+ $1 {[%emt 0:0:11][%mdl 64] Decoy} 24. Kxf3 {[%emt 0:0:3]} Rxf4+ $5 {[%emt 0:0:7][%mdl 4] Leaves trodden paths.} 25. Kg3 {[%emt 0:0:1]} Rfxe4 {[%emt 0:0:23]} 26. Rxe4 {[%emt 0:0:3]} Rxe4 $11 {[%emt 0:0:14] KRB-KRN} 27. Kf3 {[%emt 0:0:2] The position is equal.} Rf4+ {[%emt 0:0:13]} 28. Kg3 {[%emt 0:0:3] [#] Black must now prevent Bxd5+.} Re4 {[%emt 0:0:6]} 29. Kf3 {[%emt 0:0:1]} Rf4+ {[%emt 0:0:9]} 30. Kg3 {[%emt 0:0:1] Bxd5+ would be deadly.} Re4 {[%emt 0:0:10] [#]} 31. Kf3 $146 {[%emt 0:0:3] Weighted Error Value: White=0.04 (flawless) /Black=0.01 (flawless)} ({Predecessor:} 31. f3 Re2 32. c4 bxc4 33. Bxc4 Rxb2 34. Bxa6 g5 35. Bc4 Kg7 36. Bxd5 cxd5 37. a4 Rb6 38. a5 Ra6 39. f4 gxf4+ 40. Kxf4 Kf6 41. Ke3 Ke5 {½-½ Kasperek,R (2275)-De Melo,G (2083) LSS WC-2013-S-00002 2010} )1/2-1/2
+
