@@ -3,7 +3,7 @@
 @section('title', 'Verify')
 
 @section('main')
-    <div class="row justify-content-center mt-auto">
+    <div class="row justify-content-center my-3">
         <div class="col-md-4">
             <div class="card brown">
                 <div class="card-header">{{ __('Verify Your Email Address') }}</div>

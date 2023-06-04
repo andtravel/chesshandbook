@@ -1,13 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Admin panel</h1>
-</body>
-</html>
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Admin Panel</h1>
+@stop
+
+@section('content')
+    <p>Content</p>
+    <div class="cbreplay" data-url="{{asset('chess-games/Nakamura-Carlsen.pgn')}}">
+    </div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" type="text/css" href="https://pgn.chessbase.com/CBReplay.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+@stop
+
+@section('js')
+    <script src="https://pgn.chessbase.com/jquery-3.0.0.min.js"></script>
+    <script src="https://pgn.chessbase.com/cbreplay.js"></script>
+@stop

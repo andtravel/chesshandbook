@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use JeroenNoten\LaravelAdminLte\Http\Controllers\DarkModeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         return view('admin.dashboard');
     })->name('dashboard');
 });
+
+//Route::post('/darkmode/toggle', [DarkModeController::class, 'toggle'])
+//    ->name('darkmode.toggle');

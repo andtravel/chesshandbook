@@ -3,7 +3,7 @@
 @section('title','Сброс пароля')
 
 @section('main')
-    <div class="row justify-content-center mt-auto">
+    <div class="row justify-content-center my-3">
         <div class="col-md-4">
             <div class="card brown">
                 <div class="card-header text-center">{{ __('Сбросить пароль') }}</div>
