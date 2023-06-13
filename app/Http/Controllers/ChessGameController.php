@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\DatabaseToPGNFile;
 use Chess\Exception\UnknownNotationException;
-use Chess\Movetext;
 use Chess\Variant\Classical\PGN\AN\Termination;
 use Chess\Variant\Classical\PGN\Tag;
 use Illuminate\Http\Request;
 use App\Models\ChessGame;
-use App\Services\PGNFileToDatabase;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Chess\Variant\Classical\PGN\Move;
 
 class ChessGameController extends Controller
 {
 
-        public function pgnToDatabase(): void //$filepath, $table
+        public function pgnToDatabase($filepath): void
     {
         $result = (object) [
             'total' => 0,
@@ -27,7 +21,7 @@ class ChessGameController extends Controller
         ];
         $tags = [];
         $movetext = '';
-        $file = new \SplFileObject(storage_path('app/Nakamura-Carlsen.pgn'));
+        $file = new \SplFileObject(storage_path($filepath));
 
         while (!$file->eof()) {
             $line = rtrim($file->fgets());
@@ -89,9 +83,10 @@ class ChessGameController extends Controller
         return ChessGame::insert($tags);
     }
 
-    public function databaseToPgn(): void
+
+    public function databaseToPgn($filepath, $games): void
     {
-        $games = ChessGame::where('id','<', 5)->get();
+//        $games = ChessGame::where('id','<', 5)->get();
 
         $games = json_decode($games, JSON_OBJECT_AS_ARRAY);
 
@@ -109,11 +104,6 @@ class ChessGameController extends Controller
            }
         }
 
-        Storage::disk('local')->put('site.pgn', $file);
+        Storage::disk('local')->put($filepath, $file);
     }
-   /* use App\Http\Controllers\ChessGameController;
-        $cgc = new ChessGameController;
-   $cgc->databaseToPgn();
-   $cgc->pgnToDatabase();
-      */
 }
