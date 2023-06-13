@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Services\DatabaseToPGNFile;
 use Chess\Exception\UnknownNotationException;
+use Chess\Movetext;
 use Chess\Variant\Classical\PGN\AN\Termination;
 use Chess\Variant\Classical\PGN\Tag;
 use Illuminate\Http\Request;
 use App\Models\ChessGame;
 use App\Services\PGNFileToDatabase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Chess\Variant\Classical\PGN\Move;
 
 class ChessGameController extends Controller
 {
 
-        public function file_to_db($filepath, $table): void
+        public function pgnToDatabase(): void //$filepath, $table
     {
         $result = (object) [
             'total' => 0,
@@ -22,36 +27,35 @@ class ChessGameController extends Controller
         ];
         $tags = [];
         $movetext = '';
-        $file = new \SplFileObject(public_path($filepath));
+        $file = new \SplFileObject(storage_path('app/Nakamura-Carlsen.pgn'));
+
         while (!$file->eof()) {
             $line = rtrim($file->fgets());
             try {
                 $tag = Tag::validate($line);
                 $tags[$tag->name] = $tag->value;
-            } catch (UnknownNotationException $e) {
-                if ($this->isOneLinerMovetext($line)) {
-                    if ($this->insert($tags, $movetext, $table)) {
-                        $result->valid++;
-                    }
-                    $tags = [];
-                    $movetext = '';
-                    $result->total++;
-                } elseif ($this->startsMovetext($line)) {
-                    if (!array_diff(Tag::mandatory(), array_keys($tags))) {
-                        $movetext .= ' ' . $line;
-                    }
-                } elseif ($this->endsMovetext($line)) {
-                    $movetext .= ' ' . $line;
-                    if ($this->insert($tags, $movetext, $table)) {
-                        $result->valid++;
-                    }
-                    $tags = [];
-                    $movetext = '';
-                    $result->total++;
-                } else {
-                    $movetext .= ' ' . $line;
-                }
-            }
+                 } catch (UnknownNotationException $e) {
+                     if ($this->isOneLinerMovetext($line)) {
+                        if ($this->insert($tags, $movetext)) {
+                             $result->valid++;
+                         }
+                         $tags = [];
+                         $movetext = '';
+                         $result->total++;
+                     } elseif ($this->startsMovetext($line)) {
+                             $movetext .= ' ' . $line;
+                     } elseif ($this->endsMovetext($line)) {
+                         $movetext .= ' ' . $line;
+                         if ($this->insert($tags, $movetext)) {
+                             $result->valid++;
+                         }
+                         $tags = [];
+                         $movetext = '';
+                         $result->total++;
+                     } else {
+                         $movetext .= ' ' . $line;
+                     }
+                 }
         }
     }
 
@@ -62,57 +66,54 @@ class ChessGameController extends Controller
 
         public function startsMovetext(string $line): bool
     {
-        return (strncmp($line, '1.', 2) === 0) || (strncmp($line, '{[%evp', 6) === 0);
+        return  Str::startsWith($line, ['1.', '{[%evp']);
     }
 
         public function endsMovetext(string $line): bool
     {
-        $Termination = [
+        $termination = [
             Termination::WHITE_WINS,
             Termination::BLACK_WINS,
             Termination::DRAW,
             Termination::UNKNOWN
         ];
 
-        foreach ($Termination as $term) {
-            if (str_ends_with($line, $term)) {
-                return true;
-            };
-        }
-        return false;
+        return Str::endsWith($line, $termination);
     }
 
-        protected function insert(array $tags, string $movetext, string $table): bool
+        protected function insert(array $tags, string $movetext): bool
     {
-        $tags['movetext'] = trim(rtrim($movetext, $tags['Result']));
 
-        return DB::table($table)->insert($tags);
+        $tags['movetext'] = trim(Str::remove($tags['Result'], $movetext));
 
+        return ChessGame::insert($tags);
     }
 
-    public function db_to_file_pgn($filepath): void
+    public function databaseToPgn(): void
     {
-        $games = ChessGame::where('id', 1)->get();
+        $games = ChessGame::where('id','<', 5)->get();
 
         $games = json_decode($games, JSON_OBJECT_AS_ARRAY);
 
         $file = '';
-        for ($i = 0; $i < count($games); $i++) {
-            foreach ($games[$i] as $k => $v) {
-                if ($v === null || $v === "" || $k === "id") {
-                    unset($games[$i][$k]);
+
+        foreach ($games as $game) {
+           foreach ($game as $k => $v) {
+               if ($v === null || $v === "" || $k === "id") {
+                    unset($game[$k]);
                 } elseif ($k !== "movetext") {
                     $file .= "[" . $k . " \"" . $v . "\"]\n";
                 } else {
-                    $file .= "\n" . $v . " " . $games[$i]['Result'] . "\n\n";
+                    $file .= "\n" . $v . " " . $game['Result'] . "\n\n";
                 }
-            }
+           }
         }
 
-        file_put_contents(public_path($filepath), $file, FILE_APPEND);
-
+        Storage::disk('local')->put('site.pgn', $file);
     }
    /* use App\Http\Controllers\ChessGameController;
         $cgc = new ChessGameController;
-   $cgc->db_to_file_pgn('chess-games/fpc.pgn');   */
+   $cgc->databaseToPgn();
+   $cgc->pgnToDatabase();
+      */
 }
